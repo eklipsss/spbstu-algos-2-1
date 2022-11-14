@@ -1,0 +1,21 @@
+The list is:
+Zenkov Alexander Igorevich 27 8 2000
+Dmitriev Mikhail Leonidovich 16 10 2001
+Aptukov Mikhail Ildusovich 24 1 2003
+Afanasiev Andrey Valerievich 5 6 2003
+Lips Ekaterina Konstantinovna 31 7 2003
+Dementieva Daria Denisovna 31 7 2003
+Babakhina Sofia Alexandrovna 30 11 2003
+Basalaev Daniil Alexandrovich 11 2 2004
+Goryunov Maxim Yurievich 28 6 2006
+
+Date coincidence check:
+Put the day: 31
+Put the month: 7
+Put the year: 2003
+
+Coincidences:
+Lips Ekaterina Konstantinovna 31 7 2003
+Dementieva Daria Denisovna 31 7 2003
+
+Number of coincidences: 2
