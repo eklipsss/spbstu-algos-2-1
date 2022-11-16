@@ -1,26 +1,8 @@
-//#include "header.h"
+#include "header.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
 #pragma warning(disable:4996)
-
-typedef struct {
-	int day;
-	int month;
-	int year;
-} Date;
-
-typedef struct {
-	char* surname;
-	char* name;
-	char* patronymic;
-} Profile;
-
-typedef struct {
-	Profile* profile;
-	Date* date;
-	struct List* next;
-} List;
 
 int StringCounter(char const* f) {
 	FILE* file;
@@ -67,7 +49,7 @@ void Insert(Profile* profile, Date* date, List** list) {
 		prev = NULL;
 		cur = *list;
 		while (cur != NULL && (CompareStructures(date, cur->date) == -1)){ 
-			//ïîêà äàòà ýëåìåíòà äëÿ âñòàâêè date áîëüøå, ÷åì äàòà òåêóùåãî ýëåìåíòà ñïèñêà, èëè ïîêà íå çàêîí÷èòñÿ ñïèñîê
+			//Ð¿Ð¾ÐºÐ° Ð´Ð°Ñ‚Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° Ð´Ð»Ñ Ð²ÑÑ‚Ð°Ð²ÐºÐ¸ date Ð±Ð¾Ð»ÑŒÑˆÐµ, Ñ‡ÐµÐ¼ Ð´Ð°Ñ‚Ð° Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° ÑÐ¿Ð¸ÑÐºÐ°, Ð¸Ð»Ð¸ Ð¿Ð¾ÐºÐ° Ð½Ðµ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ñ‚ÑÑ ÑÐ¿Ð¸ÑÐ¾Ðº
 			prev = cur;
 			cur = cur->next;
 		}
@@ -104,8 +86,8 @@ List* CreateListFromFile(char const* filename, int k) {
 			exit(1);
 		}
 		int i = 0;
-		while ((i <= 2) && (fscanf_s(f, "%c", &t) == 1)) { // ïîêà óäàëîñü ñ÷èòàòü è íå çàïîëåíû ïîëÿ ÔÈÎ
-				if (Lettercheck(t) == 1) { // ïðîâåðêà ñèìâîëà (äîõîäèì äî çíàêà ïðîáåëà è ïåðåõîäèì ê çàïèñè â ñîîòâåòñòâóþùåå ïîëå)
+		while ((i <= 2) && (fscanf(f, "%c", &t) == 1)) { // Ð¿Ð¾ÐºÐ° ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸ Ð½Ðµ Ð·Ð°Ð¿Ð¾Ð»ÐµÐ½Ñ‹ Ð¿Ð¾Ð»Ñ Ð¤Ð˜Ðž
+				if (Lettercheck(t) == 1) { // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¸Ð¼Ð²Ð¾Ð»Ð° (Ð´Ð¾Ñ…Ð¾Ð´Ð¸Ð¼ Ð´Ð¾ Ð·Ð½Ð°ÐºÐ° Ð¿Ñ€Ð¾Ð±ÐµÐ»Ð° Ð¸ Ð¿ÐµÑ€ÐµÑ…Ð¾Ð´Ð¸Ð¼ Ðº Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð² ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‰ÐµÐµ Ð¿Ð¾Ð»Ðµ)
 					len++;
 					char* p = (char*)realloc(a, len * sizeof(char));
 					if (p == NULL) {
@@ -113,10 +95,10 @@ List* CreateListFromFile(char const* filename, int k) {
 						exit(1);
 					}
 					a = p;
-					a[len - 1] = t; // äîáàâëåíèå ñèìâîëà â ñòðîêó
+					a[len - 1] = t; // Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð° Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ
 				}
 				else {
-					// åñëè ñòðîêà çàïîëíåíà, òî äîáàâëÿåì ñèèìâîë, òàêèì îáðàçîì óäàåòñÿ èçáåæàòü çàïèñè ïîáî÷íûõ ýëåìåíòîâ (òàêèõ êàê çíàê ïåðåíîñà ñòðîêè "\n") â ïîëå 
+					// ÐµÑÐ»Ð¸ ÑÑ‚Ñ€Ð¾ÐºÐ° Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð°, Ñ‚Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ ÑÐ¸Ð¸Ð¼Ð²Ð¾Ð», Ñ‚Ð°ÐºÐ¸Ð¼ Ð¾Ð±Ñ€Ð°Ð·Ð¾Ð¼ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð¸Ð·Ð±ÐµÐ¶Ð°Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð¿Ð¾Ð±Ð¾Ñ‡Ð½Ñ‹Ñ… ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² (Ñ‚Ð°ÐºÐ¸Ñ… ÐºÐ°Ðº Ð·Ð½Ð°Ðº Ð¿ÐµÑ€ÐµÐ½Ð¾ÑÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ "\n") Ð² Ð¿Ð¾Ð»Ðµ 
 					if (Lettercheck(a[0])) { 
 						len++;
 						char* p = (char*)realloc(a, len * sizeof(char));
@@ -139,7 +121,7 @@ List* CreateListFromFile(char const* filename, int k) {
 					}
 				}
 		}
-		fscanf_s(f, "%i %i %i", &date->day, &date->month, &date->year);
+		if (!fscanf(f, "%i %i %i", &date->day, &date->month, &date->year)) exit(1);
 		Insert(profile, date, &start);
 	}
 	fclose(f);
@@ -210,21 +192,10 @@ Date* InputDate() {
 	}
 	printf("");
 	printf("Put the day: ");
-	scanf("%i", &input_date->day);
+	if (!scanf("%i", &input_date->day)) exit(1);
 	printf("Put the month: ");
-	scanf("%i", &input_date->month);
+	if (!scanf("%i", &input_date->month)) exit(1);
 	printf("Put the year: ");
-	scanf("%i", &input_date->year);
+	if (!scanf("%i", &input_date->year)) exit(1);
 	return input_date;
-}
-
-int main(void) {
-	char* f = "input.txt";
-	int k = StringCounter(f);
-	List* list = CreateListFromFile(f, k);
-	PrintWholeList(list);
-	printf("\nDate coincidence check: \n");
-	Date* input_date = InputDate();
-	CheckDate(list, input_date);
-	return 0;
 }
