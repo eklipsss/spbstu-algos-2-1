@@ -55,11 +55,12 @@ List* CreateListFromFile(char const* filename) {
 		point_t->x = x;
 		point_t->y = y;
 		InsertToList(point_t, &list);
+		
 	}
 	return list;
 }
 
-List* CreateListField(int x, int y) { //работает верно
+List* CreateListField(int x, int y) { 
 	Point* point = (Point*)malloc(sizeof(Point));
 	point->x = x;
 	point->y = y;
@@ -216,7 +217,7 @@ void InsertLineToArray(Point* point1, Point* point2, List** Array, List* dots) {
 	//PrintArray(Array, Min(dots, 0, 1), Max(dots, 0, 1));
 }
 
-int** DynamicArray(int n, int m) {
+int** CreateMatrix(int n, int m) {
 	int** A = (int**)malloc(n * sizeof(int*));
 	if (A == NULL) {
 		printf("memory allocation error\n");
@@ -231,11 +232,6 @@ int** DynamicArray(int n, int m) {
 		}
 	}
 	return A;
-}
-
-void DynamicArrayFree(int** A, int n) {
-	for (int i = 0; i < n; i++) free(A[i]);
-	free(A);
 }
 
 void FillingMatrix(int** A, int n, int m) {
@@ -276,7 +272,7 @@ void PrintMatrix(int** Matrix, int n, int m) {
 void CompleteMatrix(List** Array, List* dots) {
 	int delta_x = Max(dots, 1, 0) - Min(dots, 1, 0);
 	int delta_y = Max(dots, 0, 1) - Min(dots, 0, 1);
-	int** Matrix = DynamicArray(delta_x, delta_y);
+	int** Matrix = CreateMatrix(delta_x, delta_y);
 	for (int i = 0; i < delta_y; i++) {
 		List* buf = (List*)malloc(sizeof(List));
 		buf = Array[i];
