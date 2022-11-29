@@ -1,7 +1,7 @@
 #include "header.h"
 
 int main() {
-	char* f = "list.txt";
+	char* f = "input.txt";
 	ActionOnFile(f);
 	return 0;
 }
