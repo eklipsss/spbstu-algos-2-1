@@ -1,0 +1,57 @@
+The tree is empty
+
+Enter the corresponding number:
+Add Leaf to Tree - 1
+Delete Leaf from Tree - 2
+Print the Tree - 3
+Exit - any other number
+
+1
+ - add leaf to tree
+3
+  Tree is: 0
+1
+ - add leaf to tree
+3
+  Tree is: 0 1
+1
+ - add leaf to tree
+3
+  Tree is: 0 0 0
+1
+ - add leaf to tree
+3
+  Tree is: 0 1 1 0
+1
+ - add leaf to tree
+1
+ - add leaf to tree
+3
+  Tree is: 0 0 0 1 0 1
+1
+ - add leaf to tree
+3
+  Tree is: 0 0 0 0 0 0 0
+2
+ - delete leaf from tree
+3
+  Tree is: -1 0 -1 0 0 0
+2
+ - delete leaf from tree
+3
+  Tree is: -1 0 0 -1 0
+2
+ - delete leaf from tree
+2
+ - delete leaf from tree
+2
+ - delete leaf from tree
+2
+ - delete leaf from tree
+2
+ - delete leaf from tree
+3
+  Tree is: *empty*
+2
+ - delete leaf from tree
+Error: tree is empty
